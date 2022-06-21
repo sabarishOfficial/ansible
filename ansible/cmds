@@ -1,0 +1,13 @@
+cmd:
+  ping cmd: ansible -i inventory -m ping (server_name)
+  
+  ansible-playbook syntax check cmd:
+    ansible-playbook -i inventory (name for you .yaml file) --syntax-check
+    
+  ansible-playbook run cmd:
+    ansible-playbook -i inventroy test.yaml 
+    
+  ansible run for terminal cmd:
+    ansible -i inventory -m yum -a "name=httpd state=present" server_name --become
+    
+  
