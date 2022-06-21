@@ -6,5 +6,6 @@
     - name: shell cmds
       shell: systemctl status httpd
     - name: dir
-      shell:
-         mkdir -p /home/ec-user/shell2/tessf
+      shell: |
+        mkdir /home/ec2-user/sabarish
+        touch /home/ec2-user/sabarish/shell.yaml
