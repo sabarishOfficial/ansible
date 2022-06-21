@@ -1,0 +1,14 @@
+___
+name: control
+host: control
+become: yes
+ - name: httpd installation
+   yum: 
+     name: httpd
+     state: present
+ - name: service start& enabled
+    service:
+     name: httpd
+     state: started
+     enable: yes
+

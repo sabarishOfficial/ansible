@@ -1,0 +1,10 @@
+---
+- name: server
+  hosts: control
+  become: yes
+  tasks:
+    - name: shell cmds
+      shell: systemctl status httpd
+    - name: dir
+      shell:
+         mkdir -p /home/ec-user/shell2/tessf

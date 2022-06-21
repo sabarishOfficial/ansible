@@ -1,0 +1,19 @@
+---
+- name: server
+  hosts: control
+  become: yes
+  tasks:
+   - name: httpd install
+     yum:
+       name: httpd
+       state: present
+   - name: service start
+     service:
+        name: httpd
+        state: started
+        enabled: yes
+   - name: copy files
+     copy:
+       src: index.html
+       dest: /var/www/html/index.html
+    
