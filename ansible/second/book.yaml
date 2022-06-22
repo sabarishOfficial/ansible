@@ -1,0 +1,39 @@
+---
+- name: server
+  hosts: '*'
+  become: yes
+  gather_facts: False
+  tasks:
+    - name: httpd installation
+      yum: 
+       name: "{{ packages }}"
+      vars:
+       packages:
+        - httpd
+        - expect
+    - name: service enabled
+      service:
+       name: httpd
+       state: started
+       enabled: yes
+    - name: copy data
+      copy:
+       src: ../index.html
+       dest: /var/www/html/index.html
+    - name: archive data
+      archive:
+       path: /var/www/html
+       dest: /home/ec2-user/html.tar.gz
+       format: gz
+    - name: fetch the data
+      fetch:
+       src: /home/ec2-user/html.tar.gz
+       dest: /Users/sabarish/Desktop/ansible/data/
+    - name: unarchive
+      unarchive:
+       src: /home/ec2-user/html.tar.gz
+       dest: /home/ec2-user/
+       remote_src: yes
+    - name: shell cmd
+      shell: |
+       cp /home/ec2-user/html/* /home/ec2-user/

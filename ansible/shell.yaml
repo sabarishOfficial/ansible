@@ -5,7 +5,13 @@
   tasks:
     - name: shell cmds
       shell: systemctl status httpd
-    - name: dir
-      shell: |
-        mkdir /home/ec2-user/sabarish
-        touch /home/ec2-user/sabarish/shell.yaml
+    - name: copy
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+        backup: yes
+    - name: fetch data
+      fetch:
+        src: /var/www/html/*
+        dest: /Users/sabarish/Desktop/ansible/data/*
+        flat: yes

@@ -1,0 +1,14 @@
+
+- name: server
+  hosts: '*'
+  become: yes
+  tasks:
+  - name: loop
+    yum:
+     name: "{{ item }}"
+     state: present
+    when: ansible_os_family == "RedHat"
+    loop:
+     - wget 
+     - git
+     - zip 
